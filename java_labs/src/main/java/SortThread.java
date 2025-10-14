@@ -1,3 +1,4 @@
+// SortThread.java
 public class SortThread extends Thread {
     private final Cart cart;
 
@@ -8,7 +9,6 @@ public class SortThread extends Thread {
     @Override
     public void run() {
         synchronized (cart) {
-            // Устанавливаем сортировку по убыванию и обновляем отображаемый список
             cart.sortDescending();
         }
     }

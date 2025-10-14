@@ -1,17 +1,18 @@
+// Cart.java
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.io.Serializable;
 
-public class Cart implements Runnable {
-    private final ArrayList<Toys> mainCart; // основной список игрушек
-    private List<Toys> displayedCart;       // временный список для отображения (фильтр, сортировка)
+public class Cart implements Runnable, Serializable {
+    private static final long serialVersionUID = 1L;
 
-    // фильтры храним отдельно, по умолчанию - null (не применён)
+    private final ArrayList<Toys> mainCart;
+    private List<Toys> displayedCart;
+
     private String filter_Size = null;
     private String filter_Type = null;
-
-    // флаг сортировки: 0 - нет сортировки, 1 - по возрастанию, 2 - по убыванию
     private int sortOrder = 0;
 
     public Cart(){
@@ -28,7 +29,9 @@ public class Cart implements Runnable {
         System.out.println("Вот ваша корзина: ");
         int i = 0;
         for (Toys toy : displayedCart) {
-            System.out.println((i + 1) + ". Размер: " + toy.getSize() + ", Тип: " + toy.getType());
+            System.out.println((i + 1) + ". Размер: " + toy.getSize() +
+                    ", Тип: " + toy.getType() +
+                    ", Цена: " + toy.getPrice() + " руб.");
             i++;
         }
 
@@ -56,13 +59,11 @@ public class Cart implements Runnable {
     }
 
     private void resetDisplayedCart() {
-        // формируем отображаемый список заново из основного с учётом фильтров и сортировки
         displayedCart = mainCart.stream()
                 .filter(toy -> filter_Size == null || toy.getSize().equals(filter_Size))
                 .filter(toy -> filter_Type == null || toy.getType().equals(filter_Type))
                 .collect(Collectors.toList());
 
-        // применяем сортировку
         if (sortOrder == 1) {
             displayedCart.sort(Comparator.comparing(Toys::getPrice));
         } else if (sortOrder == 2) {
@@ -96,7 +97,6 @@ public class Cart implements Runnable {
 
     @Override
     public void run() {
-        // сортировка по возрастанию (для запуска в потоке)
         sortOrder = 1;
         resetDisplayedCart();
     }
@@ -109,5 +109,13 @@ public class Cart implements Runnable {
     public void cancelSort() {
         sortOrder = 0;
         resetDisplayedCart();
+    }
+
+    public int getItemCount() {
+        return mainCart.size();
+    }
+
+    public boolean isEmpty() {
+        return mainCart.isEmpty();
     }
 }

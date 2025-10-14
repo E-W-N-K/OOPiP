@@ -1,44 +1,79 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+// Toys.java
+import java.io.Serializable;
 
-public class Toys {
-    // Для каждого объекта конкретный размер и тип
+public class Toys implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String size;
     private String type;
     private int price;
 
-    // Конструктор с выбором конкретного размера и типа
+    public Toys(String size, String type, int basePrice) {
+        this.size = size;
+        this.type = type;
+        this.price = calculatePrice(basePrice, size);
+    }
+
+    // Старый конструктор для обратной совместимости
     public Toys(String size, String type) {
         this.size = size;
         this.type = type;
-        //образование цены
+        this.price = calculateOldPrice(type, size);
+    }
+
+    private int calculatePrice(int basePrice, String size) {
+        switch (size) {
+            case "medium":
+                return (int) (basePrice * 1.5);
+            case "big":
+                return (int) (basePrice * 2.5);
+            default: // "small"
+                return basePrice;
+        }
+    }
+
+    private int calculateOldPrice(String type, String size) {
+        int basePrice;
         switch (type) {
             case "car":
-                this.price = 150;
+                basePrice = 150;
                 break;
             case "lego":
-                this.price = 300;
+                basePrice = 300;
                 break;
             case "soft-toy":
-                this.price = 200;
+                basePrice = 200;
                 break;
+            default:
+                basePrice = 100;
         }
-        switch (size){
-            case "medium":
-                this.price *= 1.5;
-                break;
-            case "big":
-                this.price *=2.5;
-                break;
-        }
+        return calculatePrice(basePrice, size);
     }
 
     public int getPrice() {
         return price;
     }
 
-    public String getSize() {return size; }
+    public String getSize() {
+        return size;
+    }
 
-    public String getType() {return type; }
+    public String getType() {
+        return type;
+    }
 
+    @Override
+    public String toString() {
+        return "Toys{size='" + size + "', type='" + type + "', price=" + price + "}";
+    }
 }
+
+
+
+
+
+
+
+
+
+
