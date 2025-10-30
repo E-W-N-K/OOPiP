@@ -1,4 +1,4 @@
-package course_project.course_project.dto;
+package course_project.course_project.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

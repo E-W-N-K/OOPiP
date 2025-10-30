@@ -53,11 +53,4 @@ public class Order {
         updateTime = LocalDateTime.now();
     }
 
-//    public void calculateTotal() {
-//        if(!orderItems.isEmpty()) {
-//            total = orderItems.stream()
-//                    .map(orderItem -> orderItem.getPriceAtOrder().multiply(new BigDecimal(orderItem.getQuantity())))
-//                    .reduce(BigDecimal.ZERO, BigDecimal::add);
-//        }
-//    } реализовать это в сервисе
 }

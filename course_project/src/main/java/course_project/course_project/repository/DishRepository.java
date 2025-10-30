@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DishRepository extends JpaRepository<Dish, Long> {
     @Query( "SELECT d " +
             "FROM Dish d " +
             "WHERE d.name LIKE %?1%")
     List<Dish> search(String name);
+
+    Optional<Dish> findById(Long id);
 }

@@ -1,4 +1,4 @@
-package course_project.course_project.dto;
+package course_project.course_project.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SearchRequestDTO {
-    String message;
+public class LoginRequestDTO {
+    private String name;
+    private String password;
 }

@@ -15,4 +15,5 @@ public class RestaurantDTO {
     private String address;
     private String phone;
     private String description;
+    private String url;
 }
