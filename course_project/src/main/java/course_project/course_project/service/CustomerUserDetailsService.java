@@ -37,7 +37,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
         );
     }
 
-    //коныертация роли в GrantedAuthority
+    //конвертация роли в GrantedAuthority
     private Collection<? extends GrantedAuthority> getAuthorities(String role) {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
     }

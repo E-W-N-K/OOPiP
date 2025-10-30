@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserWithCustomerInfoDTO {
-    private int id;
+    private Long id;
     private String name;
     private String email;
     private String address;

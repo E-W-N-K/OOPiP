@@ -32,7 +32,7 @@ public class Order {
     @Column(name = "order_time", nullable = false)
     private LocalDateTime orderTime;
 
-    @Column(name = "order_time", nullable = false)
+    @Column(name = "update_time", nullable = false)
     private LocalDateTime updateTime;
 
     @Column(nullable = false)

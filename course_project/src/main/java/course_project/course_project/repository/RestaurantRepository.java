@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
+
+    //поиск ресторана по названию
     @Query( "SELECT r " +
             "FROM Restaurant r " +
             "WHERE r.name LIKE %?1%")

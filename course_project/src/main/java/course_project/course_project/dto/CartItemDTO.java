@@ -5,15 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class CartItemDTO {
     private Long id;
-    private String name;
-    private String email;
-    private String password;
-    private String role;
-    private boolean active;
+    private Long dishId;
+    private int quantity;
+    private BigDecimal price;
+    private BigDecimal itemTotal;  // quantity * price
 }

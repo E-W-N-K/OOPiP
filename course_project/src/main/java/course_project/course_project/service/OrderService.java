@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OrderSevice {
+public class OrderService {
 
     @Autowired
     private DishRepository dishRepository;  // Репозиторий для получения Dish из БД
